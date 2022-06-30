@@ -15,12 +15,12 @@ class Requester: RequesterContract {
     }
     
     func execute(api: ApiContract,
-                 completion: @escaping (Result<Data, RequesterError>) -> Void) {
+                 completion: @escaping (Result<Data, Error>) -> Void) {
         
         guard var urlRequest = URLFactory.makeURLRequester(baseURL: api.baseURL,
                                                            path: api.endpoint.path,
                                                            parameters: api.endpoint.parameters) else {
-            completion(.failure(.invalidURL))
+            completion(.failure(RequesterError.invalidURL))
             return
         }
         
@@ -31,14 +31,14 @@ class Requester: RequesterContract {
     }
     
     func execute(urlRequest: URLRequest,
-                 completion: @escaping (Result<Data, RequesterError>) -> Void) {
+                 completion: @escaping (Result<Data, Error>) -> Void) {
         session.dataTask(with: urlRequest) { data, response, error in
             guard error == nil else {
-                completion(.failure(.requestError(localizedDescription: error?.localizedDescription ?? "")))
+                completion(.failure(RequesterError.requestError(localizedDescription: error?.localizedDescription ?? "")))
                 return
             }
             guard let data = data else {
-                completion(.failure(.unknownError))
+                completion(.failure(RequesterError.unknownError))
                 return
             }
             completion(.success(data))

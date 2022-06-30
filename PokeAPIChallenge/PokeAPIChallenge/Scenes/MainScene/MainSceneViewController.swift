@@ -2,7 +2,6 @@ import UIKit
 
 protocol MainSceneViewControllerDisplay: AnyObject {
     func displayPokemons(pokemons: [Pokemon])
-    func displayError(_ errorDescription: String)
     func updateLabel(text: String)
     func startLoaderAnimation()
     func stopLoaderAnimation()
@@ -95,9 +94,13 @@ extension MainSceneViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
         let pokemon = pokemonList[indexPath.row]
-        content.text = pokemon.name ?? ""
+        content.text = (pokemon.name ?? "").capitalized
         cell.contentConfiguration = content
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.showDetails(pokemon: pokemonList[indexPath.row])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -123,11 +126,5 @@ extension MainSceneViewController: MainSceneViewControllerDisplay {
     
     func displayPokemons(pokemons: [Pokemon]) {
         pokemonList.append(contentsOf: pokemons)
-    }
-    
-    func displayError(_ errorDescription: String) {
-        let alert = UIAlertController(title: "An error occurred", message: errorDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        present(alert, animated: true, completion: nil)
     }
 }

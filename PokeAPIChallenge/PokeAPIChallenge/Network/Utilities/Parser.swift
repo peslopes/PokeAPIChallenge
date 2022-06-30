@@ -1,13 +1,13 @@
 //
-//  MainSceneService.swift
+//  Parser.swift
 //  PokeAPIChallenge
 //
-//  Created by Pedro Sobrosa on 27/06/22.
+//  Created by Pedro Sobrosa on 29/06/22.
 //
 
 import Foundation
 
-class MainSceneService: ServiceContract {
+class Parser: ParserContract {
     
     private let requester: RequesterContract
     
@@ -15,8 +15,8 @@ class MainSceneService: ServiceContract {
         self.requester = requester
     }
     
-    func fetch<T: Decodable>(endpoint: EndpointContract,
-                             completion: @escaping (Result<T, Error>) -> Void) {
+    func parseData<T: Decodable>(from endpoint: EndpointContract,
+                                 completion: @escaping (Result<T, Error>) -> Void) {
         let api = PokeApi(endpoint: endpoint)
         requester.execute(api: api) { result in
             switch result {
@@ -33,8 +33,8 @@ class MainSceneService: ServiceContract {
         }
     }
     
-    func fetch<T: Decodable>(url: String,
-                             completion: @escaping (Result<T, Error>) -> Void) {
+    func parseData<T: Decodable>(from url: String,
+                                 completion: @escaping (Result<T, Error>) -> Void) {
         guard let urlRequest = URLFactory.makeURLRequester(baseURL: url) else {
             completion(.failure(RequesterError.invalidURL))
             return
@@ -52,5 +52,14 @@ class MainSceneService: ServiceContract {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func getRawData(from url: String,
+                    completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let urlRequest = URLFactory.makeURLRequester(baseURL: url) else {
+            completion(.failure(RequesterError.invalidURL))
+            return
+        }
+        requester.execute(urlRequest: urlRequest, completion: completion)
     }
 }

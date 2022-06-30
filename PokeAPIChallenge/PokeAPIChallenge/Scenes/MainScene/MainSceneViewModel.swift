@@ -3,11 +3,12 @@ import Foundation
 protocol MainSceneViewModelContract: AnyObject {
     func getPokemonList()
     func loadMorePokemonsIfPossible()
+    func showDetails(pokemon: Pokemon)
 }
 
 final class MainSceneViewModel {
     private let coordinator: MainSceneCoordinating
-    private let service: ServiceContract
+    private let parser: ParserContract
     private var lastPokemonResponse: PokemonResponse?
     
     
@@ -18,8 +19,8 @@ final class MainSceneViewModel {
     
     weak var viewController: MainSceneViewControllerDisplay?
 
-    init(coordinator: MainSceneCoordinating = MainSceneCoordinator(), service: ServiceContract = MainSceneService()) {
-        self.service = service
+    init(coordinator: MainSceneCoordinating = MainSceneCoordinator(), parser: ParserContract = Parser()) {
+        self.parser = parser
         self.coordinator = coordinator
     }
     
@@ -35,18 +36,22 @@ final class MainSceneViewModel {
             viewController?.updateLabel(text: "Showing \(totalPokemonsDisplayed) of \(response.count ?? .zero)")
         case .failure(let error):
             viewController?.stopLoaderAnimation()
-            viewController?.displayError(error.localizedDescription)
+            coordinator.perform(action: .presentErrorAlert(errorDescription: error.localizedDescription))
         }
     }
 }
 
 // MARK: - MainSceneViewModelContract
 extension MainSceneViewModel: MainSceneViewModelContract {
+    func showDetails(pokemon: Pokemon) {
+        coordinator.perform(action: .showDetails(pokemon: pokemon))
+    }
+    
     func getPokemonList() {
         if !isLoading {
             viewController?.startLoaderAnimation()
             isLoading = true
-            service.fetch(endpoint: MainSceneEndpoint.getList(limit: limit, offset: .zero)) { [weak self] (result: (Result<PokemonResponse, Error>)) in
+            parser.parseData(from: MainSceneEndpoint.getList(limit: limit, offset: .zero)) { [weak self] (result: (Result<PokemonResponse, Error>)) in
                 DispatchQueue.main.async {
                     self?.handleResult(result: result)
                 }
@@ -58,7 +63,7 @@ extension MainSceneViewModel: MainSceneViewModelContract {
         guard let nextRequest = lastPokemonResponse?.next else { return }
         if !isLoading {
             isLoading = true
-            service.fetch(url: nextRequest) { [weak self] (result: (Result<PokemonResponse, Error>)) in
+            parser.parseData(from: nextRequest) { [weak self] (result: (Result<PokemonResponse, Error>)) in
                 DispatchQueue.main.async {
                     self?.handleResult(result: result)
                 }

@@ -1,6 +1,7 @@
 import UIKit
 
 enum DetailsSceneAction {
+    case presentErrorAlert(localizedDescription: String)
 }
 
 protocol DetailsSceneCoordinating: AnyObject {
@@ -15,5 +16,11 @@ final class DetailsSceneCoordinator {
 // MARK: - DetailsSceneCoordinating
 extension DetailsSceneCoordinator: DetailsSceneCoordinating {
     func perform(action: DetailsSceneAction) {
+        switch action {
+        case .presentErrorAlert(let localizedDescription):
+            let alert = UIAlertController(title: "An error occurred", message: localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            viewController?.present(alert, animated: true, completion: nil)
+        }
     }
 }

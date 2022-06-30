@@ -25,15 +25,17 @@
 		DC65487C2869EB1500F29639 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65487B2869EB1500F29639 /* Requester.swift */; };
 		DC6548802869ECC600F29639 /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65487F2869ECC600F29639 /* URLFactory.swift */; };
 		DC6548822869F23A00F29639 /* RequesterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6548812869F23A00F29639 /* RequesterError.swift */; };
-		DC6548862869F36F00F29639 /* MainSceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6548852869F36F00F29639 /* MainSceneService.swift */; };
 		DC6548892869F3AE00F29639 /* PokeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6548882869F3AE00F29639 /* PokeApi.swift */; };
 		DC65488B2869F7D700F29639 /* PokemonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65488A2869F7D700F29639 /* PokemonResponse.swift */; };
 		DC65488F286A31AB00F29639 /* MainSceneViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65488E286A31AB00F29639 /* MainSceneViewModelTests.swift */; };
-		DC654891286A321900F29639 /* ServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654890286A321900F29639 /* ServiceContract.swift */; };
+		DC654891286A321900F29639 /* ParserContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654890286A321900F29639 /* ParserContract.swift */; };
 		DC654897286A3B6800F29639 /* DetailsSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654893286A3B6800F29639 /* DetailsSceneCoordinator.swift */; };
 		DC654898286A3B6800F29639 /* DetailsSceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654894286A3B6800F29639 /* DetailsSceneFactory.swift */; };
 		DC654899286A3B6800F29639 /* DetailsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654895286A3B6800F29639 /* DetailsSceneViewController.swift */; };
 		DC65489A286A3B6800F29639 /* DetailsSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654896286A3B6800F29639 /* DetailsSceneViewModel.swift */; };
+		DC65489F286D0F9900F29639 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65489E286D0F9900F29639 /* PokemonDetails.swift */; };
+		DC6548A1286D100D00F29639 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6548A0286D100D00F29639 /* Parser.swift */; };
+		DC6548A3286D14E200F29639 /* PokemonSprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6548A2286D14E200F29639 /* PokemonSprites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,15 +78,17 @@
 		DC65487B2869EB1500F29639 /* Requester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
 		DC65487F2869ECC600F29639 /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
 		DC6548812869F23A00F29639 /* RequesterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterError.swift; sourceTree = "<group>"; };
-		DC6548852869F36F00F29639 /* MainSceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneService.swift; sourceTree = "<group>"; };
 		DC6548882869F3AE00F29639 /* PokeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeApi.swift; sourceTree = "<group>"; };
 		DC65488A2869F7D700F29639 /* PokemonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResponse.swift; sourceTree = "<group>"; };
 		DC65488E286A31AB00F29639 /* MainSceneViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewModelTests.swift; sourceTree = "<group>"; };
-		DC654890286A321900F29639 /* ServiceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContract.swift; sourceTree = "<group>"; };
+		DC654890286A321900F29639 /* ParserContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserContract.swift; sourceTree = "<group>"; };
 		DC654893286A3B6800F29639 /* DetailsSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSceneCoordinator.swift; sourceTree = "<group>"; };
 		DC654894286A3B6800F29639 /* DetailsSceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSceneFactory.swift; sourceTree = "<group>"; };
 		DC654895286A3B6800F29639 /* DetailsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSceneViewController.swift; sourceTree = "<group>"; };
 		DC654896286A3B6800F29639 /* DetailsSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSceneViewModel.swift; sourceTree = "<group>"; };
+		DC65489E286D0F9900F29639 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
+		DC6548A0286D100D00F29639 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		DC6548A2286D14E200F29639 /* PokemonSprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSprites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +200,7 @@
 				DC65486D2869E44A00F29639 /* EndpointContract.swift */,
 				DC6548752869E7E900F29639 /* RequesterContract.swift */,
 				DC6548792869E96800F29639 /* ApiContract.swift */,
-				DC654890286A321900F29639 /* ServiceContract.swift */,
+				DC654890286A321900F29639 /* ParserContract.swift */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -208,6 +212,7 @@
 				DC65487B2869EB1500F29639 /* Requester.swift */,
 				DC65487F2869ECC600F29639 /* URLFactory.swift */,
 				DC6548812869F23A00F29639 /* RequesterError.swift */,
+				DC6548A0286D100D00F29639 /* Parser.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -215,7 +220,8 @@
 		DC6548832869F34B00F29639 /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
-				DC6548842869F35C00F29639 /* Service */,
+				DC6548A4286D31BF00F29639 /* Model */,
+				DC6548842869F35C00F29639 /* Endpoint */,
 				DC654860286936BF00F29639 /* MainSceneViewModel.swift */,
 				DC65485F286936BF00F29639 /* MainSceneViewController.swift */,
 				DC65485E286936BF00F29639 /* MainSceneFactory.swift */,
@@ -224,14 +230,12 @@
 			path = MainScene;
 			sourceTree = "<group>";
 		};
-		DC6548842869F35C00F29639 /* Service */ = {
+		DC6548842869F35C00F29639 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
 				DC65486A2869E3DA00F29639 /* MainSceneEndpoint.swift */,
-				DC6548852869F36F00F29639 /* MainSceneService.swift */,
-				DC65488A2869F7D700F29639 /* PokemonResponse.swift */,
 			);
-			path = Service;
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 		DC6548872869F3A100F29639 /* PokeApi */ = {
@@ -261,12 +265,30 @@
 		DC654892286A3B4E00F29639 /* DetailsScene */ = {
 			isa = PBXGroup;
 			children = (
+				DC65489B286D0F1100F29639 /* Model */,
 				DC654893286A3B6800F29639 /* DetailsSceneCoordinator.swift */,
 				DC654894286A3B6800F29639 /* DetailsSceneFactory.swift */,
 				DC654895286A3B6800F29639 /* DetailsSceneViewController.swift */,
 				DC654896286A3B6800F29639 /* DetailsSceneViewModel.swift */,
 			);
 			path = DetailsScene;
+			sourceTree = "<group>";
+		};
+		DC65489B286D0F1100F29639 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC65489E286D0F9900F29639 /* PokemonDetails.swift */,
+				DC6548A2286D14E200F29639 /* PokemonSprites.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DC6548A4286D31BF00F29639 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC65488A2869F7D700F29639 /* PokemonResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,13 +423,14 @@
 			files = (
 				DC65489A286A3B6800F29639 /* DetailsSceneViewModel.swift in Sources */,
 				DC65486E2869E44A00F29639 /* EndpointContract.swift in Sources */,
+				DC6548A3286D14E200F29639 /* PokemonSprites.swift in Sources */,
 				DC6548892869F3AE00F29639 /* PokeApi.swift in Sources */,
 				DC654864286936BF00F29639 /* MainSceneViewModel.swift in Sources */,
 				DC65487C2869EB1500F29639 /* Requester.swift in Sources */,
+				DC65489F286D0F9900F29639 /* PokemonDetails.swift in Sources */,
 				DC6548802869ECC600F29639 /* URLFactory.swift in Sources */,
 				DC6548762869E7E900F29639 /* RequesterContract.swift in Sources */,
-				DC6548862869F36F00F29639 /* MainSceneService.swift in Sources */,
-				DC654891286A321900F29639 /* ServiceContract.swift in Sources */,
+				DC654891286A321900F29639 /* ParserContract.swift in Sources */,
 				DC654898286A3B6800F29639 /* DetailsSceneFactory.swift in Sources */,
 				DC65487A2869E96800F29639 /* ApiContract.swift in Sources */,
 				DC65488B2869F7D700F29639 /* PokemonResponse.swift in Sources */,
@@ -418,6 +441,7 @@
 				DC654899286A3B6800F29639 /* DetailsSceneViewController.swift in Sources */,
 				DC654897286A3B6800F29639 /* DetailsSceneCoordinator.swift in Sources */,
 				DC6548742869E5BD00F29639 /* HTTPMethod.swift in Sources */,
+				DC6548A1286D100D00F29639 /* Parser.swift in Sources */,
 				DC6548672869380C00F29639 /* ViewControllerViewCode.swift in Sources */,
 				DC65486B2869E3DA00F29639 /* MainSceneEndpoint.swift in Sources */,
 				DC6548242869347900F29639 /* AppDelegate.swift in Sources */,
