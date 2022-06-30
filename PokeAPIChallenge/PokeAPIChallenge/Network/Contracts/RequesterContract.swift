@@ -8,6 +8,6 @@
 import Foundation
 
 protocol RequesterContract {
-    func execute(api: ApiContract, completion: @escaping (Result<Data, RequesterError>) -> Void)
-    func execute(urlRequest: URLRequest, completion: @escaping (Result<Data, RequesterError>) -> Void)
+    func execute(api: ApiContract, completion: @escaping (Result<Data, Error>) -> Void)
+    func execute(urlRequest: URLRequest, completion: @escaping (Result<Data, Error>) -> Void)
 }

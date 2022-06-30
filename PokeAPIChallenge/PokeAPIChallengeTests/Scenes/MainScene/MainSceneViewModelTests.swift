@@ -11,9 +11,9 @@ import XCTest
 class MainSceneViewModelTests: XCTestCase {
 
     func test_getPokemonList_withSuccess() {
-        let fakeMainSceneService = FakeMainSceneService()
+        let fakeParser = FakeParser()
         let fakeViewController = FakeMainSceneViewController()
-        let sut = MainSceneViewModel(service: fakeMainSceneService)
+        let sut = MainSceneViewModel(parser: fakeParser)
         sut.viewController = fakeViewController
         
         let expectation = XCTestExpectation()
@@ -26,26 +26,34 @@ class MainSceneViewModelTests: XCTestCase {
     }
     
     func test_getPokemonList_withFailure() {
-        let fakeMainSceneService = FakeMainSceneService()
-        fakeMainSceneService.isSuccess = false
-        let fakeViewController = FakeMainSceneViewController()
-        let sut = MainSceneViewModel(service: fakeMainSceneService)
-        sut.viewController = fakeViewController
+        let fakeParser = FakeParser()
+        fakeParser.isSuccess = false
+        let fakeCoordinator = FakeMainSceneCoordinator()
+        let sut = MainSceneViewModel(coordinator: fakeCoordinator, parser: fakeParser)
         
         let expectation = XCTestExpectation()
-        fakeViewController.expectation = expectation
+        fakeCoordinator.expectation = expectation
         
         sut.getPokemonList()
         wait(for: [expectation], timeout: 10)
         
-        XCTAssert(fakeViewController.shouldDisplayError)
+        XCTAssert(fakeCoordinator.shouldPresentErrorAlert)
+    }
+    
+    func test_showDetails() {
+        let fakeCoordinator = FakeMainSceneCoordinator()
+        let sut = MainSceneViewModel(coordinator: fakeCoordinator)
+        
+        sut.showDetails(pokemon: Pokemon(name: nil, url: nil))
+        
+        XCTAssert(fakeCoordinator.shouldShowDetails)
     }
 }
 
-class FakeMainSceneService: ServiceContract {
+class FakeParser: ParserContract {
     var isSuccess = true
     
-    func fetch<T: Decodable>(endpoint: EndpointContract, completion: @escaping (Result<T, Error>) -> Void) {
+    func parseData<T: Decodable>(from: EndpointContract, completion: @escaping (Result<T, Error>) -> Void) {
         if isSuccess {
             let response = PokemonResponse(count: nil, next: nil, previous: nil, results: nil)
             completion(.success(response as! T))
@@ -55,7 +63,7 @@ class FakeMainSceneService: ServiceContract {
         
     }
     
-    func fetch<T: Decodable>(url: String, completion: @escaping (Result<T, Error>) -> Void) {
+    func parseData<T: Decodable>(from: String, completion: @escaping (Result<T, Error>) -> Void) {
         if isSuccess {
             let response = PokemonResponse(count: nil, next: nil, previous: nil, results: nil)
             completion(.success(response as! T))
@@ -63,20 +71,16 @@ class FakeMainSceneService: ServiceContract {
             completion(.failure(RequesterError.unknownError))
         }
     }
+    
+    func getRawData(from url: String, completion: @escaping (Result<Data, Error>) -> Void) { }
 }
 
 class FakeMainSceneViewController: MainSceneViewControllerDisplay {
     var shouldDisplayPokemons = false
-    var shouldDisplayError = false
     var expectation: XCTestExpectation?
     
     func displayPokemons(pokemons: [Pokemon]) {
         shouldDisplayPokemons = true
-        expectation?.fulfill()
-    }
-    
-    func displayError(_ errorDescription: String) {
-        shouldDisplayError = true
         expectation?.fulfill()
     }
     
@@ -85,4 +89,21 @@ class FakeMainSceneViewController: MainSceneViewControllerDisplay {
     func startLoaderAnimation() { }
     
     func stopLoaderAnimation() { }
+}
+
+class FakeMainSceneCoordinator: MainSceneCoordinating {
+    var viewController: UIViewController?
+    var expectation: XCTestExpectation?
+    var shouldPresentErrorAlert = false
+    var shouldShowDetails = false
+    
+    func perform(action: MainSceneAction) {
+        switch action {
+        case .showDetails:
+            shouldShowDetails = true
+        case .presentErrorAlert:
+            expectation?.fulfill()
+            shouldPresentErrorAlert = true
+        }
+    }
 }
