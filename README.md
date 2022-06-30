@@ -12,7 +12,6 @@ This project was developed with:
 - Unit tests
 - Pagination
 - Threading (GCD)
-- Functional programming
 
 Xcode version: 13.2.1
 
